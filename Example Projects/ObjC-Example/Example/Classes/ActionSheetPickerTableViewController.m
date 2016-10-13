@@ -376,7 +376,7 @@
 
 - (IBAction)multiPickerButtonPressed:(id)sender {
     NSArray *rows = @[@[@"C", @"Db", @"D", @"Eb", @"E", @"F", @"Gb", @"G", @"Ab", @"A", @"Bb", @"B"],
-                      @[@"Major", @"Minor", @"Dorian", @"Spanish Gypsy"]];
+                      @[@"Major", @"Minor", @"Dorian", @"Spanish Gypsy",@"Siraj"]];
     NSArray *initialSelection = @[@2, @4];
     [ActionSheetMultipleStringPicker showPickerWithTitle:@"Select scale with multipicker" rows:rows initialSelection:initialSelection doneBlock:^(ActionSheetMultipleStringPicker *picker, NSArray *selectedIndexes, id selectedValues) {
         NSLog(@"%@", selectedIndexes);
