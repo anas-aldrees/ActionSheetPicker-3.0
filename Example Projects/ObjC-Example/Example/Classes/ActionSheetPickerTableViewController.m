@@ -375,9 +375,9 @@
 }
 
 - (IBAction)multiPickerButtonPressed:(id)sender {
-    NSArray *rows = @[@[@"C", @"Db", @"D", @"Eb", @"E", @"F", @"Gb", @"G", @"Ab", @"A", @"Bb", @"B"],
-                      @[@"Major", @"Minor", @"Dorian", @"Spanish Gypsy",@"Siraj"]];
-    NSArray *initialSelection = @[@2, @4];
+    NSArray *rows = @[@[@"1Day",@"2day",@"3day"],
+                      @[@"11Day",@"22day",@"33day"],@[@"111Day",@"222day",@"333day"],@[@"Days",@"Hours",@"Minutes"]];
+    NSArray *initialSelection = @[@0, @0];
     [ActionSheetMultipleStringPicker showPickerWithTitle:@"Select scale with multipicker" rows:rows initialSelection:initialSelection doneBlock:^(ActionSheetMultipleStringPicker *picker, NSArray *selectedIndexes, id selectedValues) {
         NSLog(@"%@", selectedIndexes);
         NSLog(@"%@", [selectedValues componentsJoinedByString:@", "]);

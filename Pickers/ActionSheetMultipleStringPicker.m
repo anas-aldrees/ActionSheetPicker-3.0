@@ -33,6 +33,8 @@
 @interface ActionSheetMultipleStringPicker()
 @property (nonatomic,strong) NSArray *data; //Array of string arrays :)
 @property (nonatomic,strong) NSArray *initialSelection;
+@property (nonatomic,strong) NSMutableArray *daysHoursSeconds;
+
 @end
 
 @implementation ActionSheetMultipleStringPicker
@@ -59,11 +61,18 @@
 }
 
 - (instancetype)initWithTitle:(NSString *)title rows:(NSArray *)data initialSelection:(NSArray *)indexes target:(id)target successAction:(SEL)successAction cancelAction:(SEL)cancelActionOrNil origin:(id)origin {
+    
     self = [self initWithTarget:target successAction:successAction cancelAction:cancelActionOrNil origin:origin];
     if (self) {
-        self.data = data;
+        self.daysHoursSeconds=[[NSMutableArray alloc] init];
+        [self.daysHoursSeconds addObject:[data objectAtIndex:0]];
+        [self.daysHoursSeconds addObject:[data objectAtIndex:1]];
+        [self.daysHoursSeconds addObject:[data objectAtIndex:2]];
+       
+        self.data = [NSArray arrayWithObjects:[data objectAtIndex:0],[data objectAtIndex:3] ,nil];
         self.initialSelection = indexes;
         self.title = title;
+        
     }
     return self;
 }
@@ -124,7 +133,17 @@
 #pragma mark - UIPickerViewDelegate / DataSource
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    if(component == 1){
+        NSMutableArray *temp=[self.data mutableCopy];
+        [temp replaceObjectAtIndex:0 withObject:[self.daysHoursSeconds objectAtIndex:row]];
+        self.data=temp;
+        [pickerView reloadComponent:0];
+        [pickerView selectRow:0 inComponent:0 animated:YES];
 
+    }
+    else{
+        
+    }
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
