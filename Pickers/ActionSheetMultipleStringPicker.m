@@ -176,7 +176,21 @@
     // return the object if it is already a NSString,
     // otherwise, return the description, just like the toString() method in Java
     // else, return nil to prevent exception
+    
+    if(component == 0) {
+        if(row == 0)
+        {
+            if([obj integerValue] == 0) {
+                self.doneBarButtonItem.enabled = NO;
+            } else {
+                self.doneBarButtonItem.enabled = YES;
+            }
+        } else {
+            self.doneBarButtonItem.enabled = YES;
+        }
+    }
 
+    
     if ([obj isKindOfClass:[NSString class]])
         return [[NSAttributedString alloc] initWithString:obj attributes:self.pickerTextAttributes];
 
