@@ -67,12 +67,21 @@
         self.daysHoursSeconds=[[NSMutableArray alloc] init];
         [self.daysHoursSeconds addObject:[data objectAtIndex:0]];
         [self.daysHoursSeconds addObject:[data objectAtIndex:1]];
-        [self.daysHoursSeconds addObject:[data objectAtIndex:2]];
-       
-        self.data = [NSArray arrayWithObjects:[data objectAtIndex:0],[data objectAtIndex:3] ,nil];
+        if (data.count > 2) {
+            [self.daysHoursSeconds addObject:[data objectAtIndex:2]];
+        }
+        if (data.count == 2) {
+            [self.daysHoursSeconds addObject:[data objectAtIndex:1]];
+            self.data = [NSArray arrayWithObjects:[data objectAtIndex:0],[data objectAtIndex:1] ,nil];
+        }
+         else if (data.count == 3) {
+              [self.daysHoursSeconds addObject:[data objectAtIndex:2]];
+           self.data = [NSArray arrayWithObjects:[data objectAtIndex:0],[data objectAtIndex:2] ,nil];
+        }else if(data.count == 4) {
+           self.data = [NSArray arrayWithObjects:[data objectAtIndex:0],[data objectAtIndex:3] ,nil];
+        }
         self.initialSelection = indexes;
         self.title = title;
-        
     }
     return self;
 }
